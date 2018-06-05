@@ -3,14 +3,17 @@ package org.howeststone.game.collection;
 
 import org.howeststone.game.player.Contestant;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 
 public class PlayerTable {
     private final LinkedList<PlayerNode> players; // a List implementing RandomAccess
-    private PlayerNode current;
     private final int maxCapacity;
+    private PlayerNode current;
 
     public PlayerTable(int capacity) {
         maxCapacity = capacity;

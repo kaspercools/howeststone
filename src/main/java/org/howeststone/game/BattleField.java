@@ -1,8 +1,6 @@
 package org.howeststone.game;
 
 import org.howeststone.game.card.BaseCard;
-import org.howeststone.game.card.Minion;
-import org.howeststone.game.card.Spell;
 import org.howeststone.game.collection.PlayerTable;
 import org.howeststone.game.contract.CanCharge;
 import org.howeststone.game.contract.Creature;

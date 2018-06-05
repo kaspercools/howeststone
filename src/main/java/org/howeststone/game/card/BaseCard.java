@@ -7,15 +7,14 @@ import java.util.Objects;
 import java.util.Set;
 
 public abstract class BaseCard {
-    private int id;
-
     protected int mana;
     protected String name;
     protected String description;
     protected CardRarity rarity;
     protected boolean destroyed;
-    private Set<ApplicableAbility> abilitySet;
     protected InstanceState instanceState;
+    private int id;
+    private Set<ApplicableAbility> abilitySet;
 
     public BaseCard() {
         this.destroyed = false;

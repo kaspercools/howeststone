@@ -8,7 +8,6 @@ import org.howeststone.game.card.state.InstanceState;
 import org.howeststone.game.contract.CanCharge;
 import org.howeststone.game.contract.Creature;
 import org.howeststone.game.contract.Summonable;
-import sun.jvm.hotspot.oops.Instance;
 
 import java.util.List;
 
@@ -32,8 +31,6 @@ public class Minion extends BaseCard implements Creature, CanCharge, Summonable,
         this.healthCardState = new CardState(this.health, CardStateType.Health);
         this.attackCardState = new CardState(this.health, CardStateType.Attack);
         this.type = type;
-
-
     }
 
     @Override
@@ -95,12 +92,12 @@ public class Minion extends BaseCard implements Creature, CanCharge, Summonable,
         return type;
     }
 
-    public boolean wasDamaged() {
-        return minionStates.contains(InstanceState.Damaged);
-    }
-
     public void setType(MinionType type) {
         this.type = type;
+    }
+
+    public boolean wasDamaged() {
+        return minionStates.contains(InstanceState.Damaged);
     }
 
     @Override

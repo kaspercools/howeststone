@@ -1,11 +1,11 @@
 package org.howeststone.game.card;
 
 import org.howeststone.game.ability.contract.AffectableTarget;
+import org.howeststone.game.card.state.CardState;
+import org.howeststone.game.card.state.CardStateType;
 import org.howeststone.game.card.state.InstanceState;
 import org.howeststone.game.contract.CanCharge;
 import org.howeststone.game.contract.Creature;
-import org.howeststone.game.card.state.CardState;
-import org.howeststone.game.card.state.CardStateType;
 
 public class Weapon extends BaseCard implements CanCharge, AffectableTarget {
     private int durability;

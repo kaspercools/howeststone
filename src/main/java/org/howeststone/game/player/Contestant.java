@@ -6,7 +6,10 @@ import org.howeststone.game.card.BaseCard;
 import org.howeststone.game.card.Minion;
 import org.howeststone.game.contract.Summonable;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.Objects;
 
 public class Contestant {
     private Hero hero;

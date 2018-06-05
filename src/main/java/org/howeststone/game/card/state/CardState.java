@@ -13,12 +13,12 @@ public class CardState {
         this.type = type;
     }
 
-    public CardStateType getType() {
-        return type;
-    }
-
     public CardState(int health) {
         this.value = health;
+    }
+
+    public CardStateType getType() {
+        return type;
     }
 
     public int getValue() {
