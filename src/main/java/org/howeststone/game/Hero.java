@@ -10,12 +10,14 @@ import org.howeststone.game.contract.CanCharge;
 import org.howeststone.game.contract.Creature;
 import sun.jvm.hotspot.oops.Instance;
 
+import java.util.List;
+
 public class Hero implements Creature, CanCharge, AffectableTarget {
     private int health;
     private String name;
     private Weapon weapon;
     private ApplicableAbility ability;
-    protected InstanceState heroState;
+    protected List<InstanceState> heroStates;
     protected CardState attackCardState;
     protected CardState healthCardState;
 
@@ -80,8 +82,8 @@ public class Hero implements Creature, CanCharge, AffectableTarget {
     }
 
     @Override
-    public InstanceState getState() {
-        return this.heroState;
+    public List<InstanceState> getStates() {
+        return this.heroStates;
     }
 
     void drawWeapon(Creature opponent) {
@@ -117,6 +119,6 @@ public class Hero implements Creature, CanCharge, AffectableTarget {
 
     @Override
     public void addState(InstanceState state) {
-        this.heroState = state;
+        this.heroStates.add(state);
     }
 }
