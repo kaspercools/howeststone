@@ -42,7 +42,7 @@ public class Weapon extends BaseCard implements CanCharge, AffectableTarget {
     @Override
     public void charge(Creature creature) {
         creature.injure(this.getAttack().getValue());
-        this.durability -= 1;
+        this.durabilityCardState = durabilityCardState.substract(1);
     }
 
     @Override
@@ -54,7 +54,7 @@ public class Weapon extends BaseCard implements CanCharge, AffectableTarget {
     public void addState(CardState additionalCardState) {
         if (additionalCardState.getType().equals(CardStateType.Attack)) {
             this.attackCardState = attackCardState.add(additionalCardState);
-        }else if(additionalCardState.getType().equals(CardStateType.Durability)){
+        } else if (additionalCardState.getType().equals(CardStateType.Durability)) {
             this.durabilityCardState = durabilityCardState.add(additionalCardState);
         }
     }

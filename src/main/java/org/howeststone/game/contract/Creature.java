@@ -3,6 +3,8 @@ package org.howeststone.game.contract;
 import org.howeststone.game.card.state.CardState;
 import org.howeststone.game.card.state.InstanceState;
 
+import java.util.List;
+
 public interface Creature {
 
     CardState getHealth();
@@ -15,5 +17,5 @@ public interface Creature {
 
     boolean hasInitialState();
 
-    InstanceState getState();
+    List<InstanceState> getStates();
 }

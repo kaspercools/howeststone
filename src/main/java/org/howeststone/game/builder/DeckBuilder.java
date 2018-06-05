@@ -19,17 +19,14 @@ public class DeckBuilder {
         selectedDeck.addCard(card);
     }
 
-    public void removeCard(BaseCard card){
+    public void removeCard(BaseCard card) {
         selectedDeck.removeCard(card);
     }
 
     public void SaveDeck() {
-
-        if (!selectedDeck.isFull()) {
-
+        if (selectedDeck.isFull()) {
+            //save
         }
-
-        //deckDAO.save(selectedDeck);
     }
 
     public Collection<BaseCard> getAvailableCards() {

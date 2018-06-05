@@ -8,22 +8,21 @@ import org.howeststone.game.card.state.InstanceState;
 import org.howeststone.game.contract.CanCharge;
 import org.howeststone.game.contract.Creature;
 import org.howeststone.game.contract.Summonable;
+import sun.jvm.hotspot.oops.Instance;
 
 import java.util.List;
 
 public class Minion extends BaseCard implements Creature, CanCharge, Summonable, AffectableTarget {
     protected int attack;
     protected int health;
-    protected InstanceState minionState;
+    protected List<InstanceState> minionStates;
     protected CardState attackCardState;
     protected CardState healthCardState;
     private List<ApplicableAbility> abilityList;
 
-    private boolean summoningSickness;
     private MinionType type;
 
     public Minion() {
-        summoningSickness = true;
     }
 
     public Minion(int health, int attack, MinionType type) {
@@ -60,22 +59,22 @@ public class Minion extends BaseCard implements Creature, CanCharge, Summonable,
     @Override
     public void injure(int amountOfHealth) {
         this.healthCardState = this.healthCardState.substract(amountOfHealth);
-        this.minionState = InstanceState.Damaged;
+        this.minionStates.add(InstanceState.Damaged);
     }
 
     @Override
     public boolean canBeAttacked() {
-        return !minionState.equals(InstanceState.Hidden);
+        return !this.minionStates.contains(InstanceState.Hidden);
     }
 
     @Override
     public boolean hasInitialState() {
-        return minionState.equals(InstanceState.Init);
+        return minionStates.contains(InstanceState.Default);
     }
 
     @Override
-    public InstanceState getState() {
-        return this.minionState;
+    public List<InstanceState> getStates() {
+        return this.minionStates;
     }
 
     @Override
@@ -85,11 +84,11 @@ public class Minion extends BaseCard implements Creature, CanCharge, Summonable,
     }
 
     public boolean hasSummoningSickness() {
-        return this.minionState.equals(InstanceState.SummoningSickness);
+        return this.minionStates.contains(InstanceState.SummoningSickness);
     }
 
     public void healSummoningSickness() {
-        this.minionState = InstanceState.Default;
+        this.minionStates.remove(InstanceState.Default);
     }
 
     public MinionType getType() {
@@ -97,7 +96,7 @@ public class Minion extends BaseCard implements Creature, CanCharge, Summonable,
     }
 
     public boolean wasDamaged() {
-        return minionState.equals(InstanceState.Damaged);
+        return minionStates.contains(InstanceState.Damaged);
     }
 
     public void setType(MinionType type) {
@@ -113,11 +112,12 @@ public class Minion extends BaseCard implements Creature, CanCharge, Summonable,
 
     @Override
     public boolean isChargeable() {
-        return !minionState.equals(InstanceState.SummoningSickness);
+        return !minionStates.contains(InstanceState.SummoningSickness);
     }
 
     @Override
     public void addState(CardState additionalCardState) {
+        // TODO: collect states history
         if (additionalCardState.getType().equals(CardStateType.Health)) {
             this.healthCardState.add(additionalCardState);
         } else if (additionalCardState.getType().equals(CardStateType.Attack)) {
@@ -127,6 +127,7 @@ public class Minion extends BaseCard implements Creature, CanCharge, Summonable,
 
     @Override
     public void addState(InstanceState state) {
-        this.minionState = state;
+        // TODO: better option would be to implement finite state machine, but that would be a bit far fetched
+        this.minionStates.add(state);
     }
 }
